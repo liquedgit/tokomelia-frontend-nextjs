@@ -1,21 +1,19 @@
 "use client";
+
 import { useRouter } from "next/navigation";
-import { LoginController } from "../Controller/AuthController";
 import { NavbarComponent } from "../components/NavbarComponent";
 import { useState } from "react";
 
-export default function Login() {
+export default function Register() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [email, setEmail] = useState("");
+
   const router = useRouter();
 
   const handleOnsubmit = async (e: any) => {
     e.preventDefault();
-    const data = await LoginController(username, password);
-    if (data && data.token) {
-      sessionStorage.setItem("token", data.token);
-      router.push("/");
-    }
   };
 
   return (
@@ -29,7 +27,9 @@ export default function Login() {
                 handleOnsubmit(e);
               }}
             >
-              <h1 className="font-bold text-3xl text-green-500 mb-5">Login</h1>
+              <h1 className="font-bold text-3xl text-green-500 mb-5">
+                Register
+              </h1>
               <div className="flex flex-col justify-center items-center">
                 <input
                   type="text"
@@ -45,6 +45,22 @@ export default function Login() {
                   className="rounded-md w-1/2 border border-black p-1 mb-5"
                   onChange={(e) => {
                     setPassword(e.target.value);
+                  }}
+                />
+                <input
+                  type="password"
+                  placeholder="Confirm Password"
+                  className="rounded-md w-1/2 border border-black p-1 mb-5"
+                  onChange={(e) => {
+                    setConfirmPassword(e.target.value);
+                  }}
+                />
+                <input
+                  type="email"
+                  className="rounded-md w-1/2 border border-black p-1 mb-5"
+                  placeholder="Email"
+                  onChange={(e) => {
+                    setEmail(e.target.value);
                   }}
                 />
                 <button

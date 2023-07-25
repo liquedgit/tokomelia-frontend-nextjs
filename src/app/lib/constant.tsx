@@ -27,3 +27,5 @@ export const GET_ALL_USERS_QUERY = `query GetAllUser{
       role
     }
   }`;
+
+export const GRAPHQL_ENDPOINT = "http://localhost:9785/query";
