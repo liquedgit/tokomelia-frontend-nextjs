@@ -3,6 +3,7 @@
 import { useRouter } from "next/navigation";
 import { NavbarComponent } from "../components/NavbarComponent";
 import { useState } from "react";
+import { RegisterController } from "../Controller/AuthController";
 
 export default function Register() {
   const [username, setUsername] = useState("");
@@ -14,6 +15,15 @@ export default function Register() {
 
   const handleOnsubmit = async (e: any) => {
     e.preventDefault();
+    const data = await RegisterController(
+      username,
+      password,
+      confirmPassword,
+      email
+    );
+    if (data.username) {
+      router.push("/login");
+    }
   };
 
   return (
@@ -65,9 +75,9 @@ export default function Register() {
                 />
                 <button
                   type="submit"
-                  className="border border-black rounded-md w-1/4"
+                  className="border border-black rounded-md w-1/4 p-2"
                 >
-                  Login
+                  Register
                 </button>
               </div>
             </form>

@@ -7,9 +7,7 @@ export const AUTH_LOGIN_QUERY = `query LoginAuth($username : String!, $password 
 
 export const AUTH_REGISTER_MUTATION = `mutation CreateAccount($inputUser : NewUser!){
     createNewUser(input:$inputUser){
-      id
       username
-      role
     }
 }`;
 
